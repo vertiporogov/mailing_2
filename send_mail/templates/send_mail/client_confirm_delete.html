@@ -6,10 +6,11 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data">
+                    <form method="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Создать</button>
+                        <p>Хотите удалить клиента "{{ object|title }}" ?</p>
+                        <button type="submit" class="btn btn-danger">Подтвердить</button>
+                        <a href="{% url 'send_mail:list' %}" class="btn btn-warning">Отмена</a>
                     </form>
                 </div>
             </div>
