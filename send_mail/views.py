@@ -1,8 +1,15 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView, TemplateView
 
 from send_mail.models import Client, MailingMassage, MailingModel
+
+
+class HomeView(TemplateView):
+    template_name = 'send_mail/home.html'
+    extra_context = {
+        'title': 'Рассылки - Главная'
+    }
 
 
 class ClientCreateView(CreateView):

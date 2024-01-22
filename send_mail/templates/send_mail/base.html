@@ -21,12 +21,15 @@
 <header>
     <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-            <a href="{% url 'send_mail:view_mailingmassage' object.pk %}"
+            <a href="{% url 'send_mail:list_client' %}"
                type="button" class="btn btn-sm btn-outline-secondary">Клиенты</a>
-            <a href="{% url 'send_mail:edit_mailingmassage' object.pk %}" type="button"
+            <a href="{% url 'send_mail:list_mailingmodel' %}" type="button"
                class="btn btn-sm btn-outline-secondary">Рассылки</a>
-            <a href="{% url 'send_mail:delete_mailingmassage' object.pk %}" type="button"
+            <a href="{% url 'send_mail:list_mailingmassage' %}" type="button"
                class="btn btn-sm btn-outline-secondary">Письма</a>
+            <a href="{% url 'send_mail:home' %}" type="button"
+               class="btn btn-sm btn-outline-secondary">Главная</a>
+
         </div>
 </header>
 
@@ -50,13 +53,7 @@
 
 </main>
 
-<footer class="text-muted">
-    <div class="container">
-        <p class="float-right">
-        </p>
-        <p>&copy; 2023 - {% now 'Y' %}</p>
-    </div>
-</footer>
+<footer></footer>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
