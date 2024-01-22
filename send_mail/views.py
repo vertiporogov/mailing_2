@@ -58,7 +58,7 @@ class MailingMassageDeleteView(DeleteView):
 class MailingModelCreateView(CreateView):
     model = MailingModel
     fields = ('name_mailing', 'start_time', 'end_time', 'body_massage')
-    success_url = reverse_lazy('send_mail:list_mailingmassage')
+    success_url = reverse_lazy('send_mail:list_mailingmodel')
 
 
 class MailingModelListView(ListView):

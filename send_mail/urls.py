@@ -26,7 +26,7 @@ urlpatterns = [
     path('delete_mailingmassage/<int:pk>', MailingMassageDeleteView.as_view(), name='delete_mailingmassage'),
     path('create_mailingmodel/', MailingModelCreateView.as_view(), name='create_mailingmodel'),
     path('list_mailingmodel/', MailingModelListView.as_view(), name='list_mailingmodel'),
-    path('edit_mailingmodel/', MailingModelUpdateView.as_view(), name='edit_mailingmodel'),
-    path('view_mailingmodel/', MailingModelDetailView.as_view(), name='view_mailingmodel'),
-    path('delete_mailingmodel/', MailingModelDeleteView.as_view(), name='delete_mailingmodel'),
+    path('edit_mailingmodel/<int:pk>', MailingModelUpdateView.as_view(), name='edit_mailingmodel'),
+    path('view_mailingmodel/<int:pk>', MailingModelDetailView.as_view(), name='view_mailingmodel'),
+    path('delete_mailingmodel/<int:pk>', MailingModelDeleteView.as_view(), name='delete_mailingmodel'),
 ]

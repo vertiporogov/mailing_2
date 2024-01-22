@@ -22,4 +22,4 @@ class MailingModelAdmin(admin.ModelAdmin):
 
 @admin.register(MailingList)
 class MailingListAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'client', 'mailing_model',)
+    list_display = ('pk', 'client', 'name_mailing',)

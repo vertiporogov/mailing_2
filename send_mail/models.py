@@ -48,7 +48,7 @@ class MailingModel(models.Model):
 
 
 class MailingList(models.Model):
-    mailing_model = models.ForeignKey(MailingModel, on_delete=models.CASCADE, verbose_name='рассылка')
+    name_mailing = models.ForeignKey(MailingModel, on_delete=models.CASCADE, verbose_name='рассылка')
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клтиент')
 
     def __str__(self):
