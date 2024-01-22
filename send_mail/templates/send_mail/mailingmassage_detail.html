@@ -1,0 +1,19 @@
+{%  extends 'send_mail/base.html'%}
+
+{% block content %}
+<div class="container">
+    <div class="card mb-4 box-shadow ">
+        <div class="card-body">
+            <p>
+                {{ object.name_massage }}
+            </p>
+            <p>
+            {{ object.topic_massage }}
+            </p>
+            <p>
+                {{ object.body_massage }}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

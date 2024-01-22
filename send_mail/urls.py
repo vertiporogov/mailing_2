@@ -1,14 +1,31 @@
 from django.urls import path
 
 from send_mail.apps import SendMailConfig
-from send_mail.views import ClientCreateView, ClientListView, ClientUpdateView, ClientDetailView, ClientDeleteView
+from send_mail.views import ClientCreateView, ClientListView, ClientUpdateView, ClientDetailView, ClientDeleteView, \
+    MailingMassageCreateView, MailingMassageListView, MailingMassageUpdateView, MailingMassageDetailView, \
+    MailingMassageDeleteView
 
 app_name = SendMailConfig.name
 
+
+class MailingMassageClientDeleteView:
+    pass
+
+
 urlpatterns = [
-    path('create/', ClientCreateView.as_view(), name='create'),
-    path('', ClientListView.as_view(), name='list'),
-    path('edit/<int:pk>', ClientUpdateView.as_view(), name='edit'),
-    path('view/<int:pk>', ClientDetailView.as_view(), name='view'),
-    path('delete/<int:pk>', ClientDeleteView.as_view(), name='delete'),
+    path('create_client/', ClientCreateView.as_view(), name='create_client'),
+    path('', ClientListView.as_view(), name='list_client'),
+    path('edit_client/<int:pk>', ClientUpdateView.as_view(), name='edit_client'),
+    path('view_client/<int:pk>', ClientDetailView.as_view(), name='view_client'),
+    path('delete_client/<int:pk>', ClientDeleteView.as_view(), name='delete_client'),
+    path('create_mailingmassage/', MailingMassageCreateView.as_view(), name='create_mailingmassage'),
+    path('list_mailingmassage/', MailingMassageListView.as_view(), name='list_mailingmassage'),
+    path('edit_mailingmassage/<int:pk>', MailingMassageUpdateView.as_view(), name='edit_mailingmassage'),
+    path('view_mailingmassage/<int:pk>', MailingMassageDetailView.as_view(), name='view_mailingmassage'),
+    path('delete_mailingmassage/<int:pk>', MailingMassageDeleteView.as_view(), name='delete_mailingmassage'),
+    path('create_mailingmodel/', MailingMassageCreateView.as_view(), name='create_mailingmodel'),
+    path('list_mailingmodel/', MailingMassageCreateView.as_view(), name='list_mailingmodel'),
+    path('edit_mailingmodel/', MailingMassageCreateView.as_view(), name='edit_mailingmodel'),
+    path('view_mailingmodel/', MailingMassageCreateView.as_view(), name='view_mailingmodel'),
+    path('delete_mailingmodel/', MailingMassageCreateView.as_view(), name='delete_mailingmodel'),
 ]
