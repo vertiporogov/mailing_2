@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView, TemplateView
 
-from send_mail.models import Client, MailingMassage, MailingModel
+from send_mail.models import Client, MailingMassage, MailingModel, MailingList
 
 
 class HomeView(TemplateView):
@@ -64,7 +64,7 @@ class MailingMassageDeleteView(DeleteView):
 
 class MailingModelCreateView(CreateView):
     model = MailingModel
-    fields = ('name_mailing', 'start_time', 'end_time', 'body_massage')
+    fields = ('name_mailing', 'start_time', 'end_time', 'body_massage', 'email')
     success_url = reverse_lazy('send_mail:list_mailingmodel')
 
 
@@ -78,7 +78,7 @@ class MailingModelDetailView(DetailView):
 
 class MailingModelUpdateView(UpdateView):
     model = MailingModel
-    fields = ('name_mailing', 'start_time', 'end_time', 'body_massage')
+    fields = ('name_mailing', 'start_time', 'end_time', 'body_massage', 'email')
     success_url = reverse_lazy('send_mail:list_mailingmodel')
 
 
@@ -86,3 +86,27 @@ class MailingModelDeleteView(DeleteView):
     model = MailingModel
     success_url = reverse_lazy('send_mail:list_mailingmodel')
 
+
+class MailingListCreateView(CreateView):
+    model = MailingList
+    fields = ('name_mailing', 'client',)
+    success_url = reverse_lazy('send_mail:list_mailinglist')
+
+
+class MailingListUpdateView(UpdateView):
+    model = MailingList
+    fields = ('name_mailing', 'client',)
+    success_url = reverse_lazy('send_mail:list_mailinglist')
+
+
+class MailingListListView(ListView):
+    model = MailingList
+
+
+class MailingListDetailView(DetailView):
+    model = MailingList
+
+
+class MailingListDeleteView(DeleteView):
+    model = MailingList
+    success_url = reverse_lazy('send_mail:list_mailinglist')

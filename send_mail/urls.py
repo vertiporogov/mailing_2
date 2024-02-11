@@ -1,12 +1,19 @@
 from django.urls import path
 
 from send_mail.apps import SendMailConfig
+
 from send_mail.views import ClientCreateView, ClientListView, ClientUpdateView, ClientDetailView, ClientDeleteView, \
     MailingMassageCreateView, MailingMassageListView, MailingMassageUpdateView, MailingMassageDetailView, \
     MailingMassageDeleteView, MailingModelCreateView, MailingModelListView, MailingModelUpdateView, \
-    MailingModelDetailView, MailingModelDeleteView, HomeView
+    MailingModelDetailView, MailingModelDeleteView, HomeView, MailingListCreateView, MailingListListView, \
+    MailingListUpdateView, MailingListDeleteView, MailingListDetailView
 
 app_name = SendMailConfig.name
+
+
+class MailingListViewView:
+    pass
+
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -28,4 +35,10 @@ urlpatterns = [
     path('edit_mailingmodel/<int:pk>', MailingModelUpdateView.as_view(), name='edit_mailingmodel'),
     path('view_mailingmodel/<int:pk>', MailingModelDetailView.as_view(), name='view_mailingmodel'),
     path('delete_mailingmodel/<int:pk>', MailingModelDeleteView.as_view(), name='delete_mailingmodel'),
+
+    path('create_mailinglist/', MailingListCreateView.as_view(), name='create_mailinglist'),
+    path('list_mailinglist/', MailingListListView.as_view(), name='list_mailinglist'),
+    path('edit_mailinglist/', MailingListUpdateView.as_view(), name='edit_mailinglist'),
+    path('view_mailinglist/', MailingListDetailView.as_view(), name='view_mailinglist'),
+    path('delete_mailinglist/', MailingListDeleteView.as_view(), name='delete_mailinglist'),
 ]

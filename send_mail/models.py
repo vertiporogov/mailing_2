@@ -30,6 +30,7 @@ class MailingMassage(models.Model):
 
 
 class MailingModel(models.Model):
+    email = models.ManyToManyField(Client, verbose_name='клиент рассылки')
     name_mailing = models.CharField(max_length=100, verbose_name='название рассылки')
     start_time = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='начало рассылки')
     end_time = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='окончание рассылки')
@@ -52,7 +53,7 @@ class MailingList(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клтиент')
 
     def __str__(self):
-        return f'{self.mailing_model} - {self.client}'
+        return f'{self.name_mailing} - {self.client}'
 
     class Meta:
         verbose_name = 'письмо'
