@@ -33,6 +33,8 @@ class RegisterView(CreateView):
 
         send_registration(new_user.email, new_user.token)
 
+        return redirect(reverse('send_mail:home'))
+
     def token_generate(self):
         return str(uuid4())
 
