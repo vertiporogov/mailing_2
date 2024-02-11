@@ -19,18 +19,7 @@
 <body>
 
 <header>
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="btn-group">
-            <a href="{% url 'send_mail:list_client' %}"
-               type="button" class="btn btn-sm btn-outline-secondary">Клиенты</a>
-            <a href="{% url 'send_mail:list_mailingmodel' %}" type="button"
-               class="btn btn-sm btn-outline-secondary">Рассылки</a>
-            <a href="{% url 'send_mail:list_mailingmassage' %}" type="button"
-               class="btn btn-sm btn-outline-secondary">Письма</a>
-            <a href="{% url 'send_mail:home' %}" type="button"
-               class="btn btn-sm btn-outline-secondary">Главная</a>
-
-        </div>
+    {% include 'send_mail/includes/inc_main_menu.html' %}
 </header>
 
 <main role="main">

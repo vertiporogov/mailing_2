@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-between align-items-center">
+    <div class="btn-group">
+        <a href="{% url 'send_mail:list_client' %}"
+           type="button" class="btn btn-sm btn-outline-secondary">Клиенты</a>
+        <a href="{% url 'send_mail:list_mailingmodel' %}" type="button"
+           class="btn btn-sm btn-outline-secondary">Рассылки</a>
+        <a href="{% url 'send_mail:list_mailingmassage' %}" type="button"
+           class="btn btn-sm btn-outline-secondary">Письма</a>
+        <a href="{% url 'send_mail:home' %}" type="button"
+           class="btn btn-sm btn-outline-secondary">Главная</a>
+        {% if user.is_authenticated %}
+        <a type="button"
+           class="btn btn-sm btn-outline-secondary" href="{% url 'users:logout' %}">Выйти</a>
+        <a type="button"
+           class="btn btn-sm btn-outline-secondary" href="{% url 'users:register' %}">Изменить профиль</a>
+        {% else %}
+        <a type="button"
+           class="btn btn-sm btn-outline-secondary" href="{% url 'users:login' %}">Войти</a>
+        <a type="button"
+           class="btn btn-sm btn-outline-secondary" href="{% url 'users:register' %}">Регистрация</a>
+        {% endif %}
+
+    </div>
+</div>
