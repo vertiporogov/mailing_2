@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView, TemplateView
@@ -14,7 +15,7 @@ class HomeView(TemplateView):
 
 class ClientCreateView(CreateView):
     model = Client
-    fields = ('name', 'email', 'comment',)
+    fields = ('name', 'email', 'comment', 'owner',)
     success_url = reverse_lazy('send_mail:list_client')
 
 
@@ -64,16 +65,37 @@ class MailingMassageDeleteView(DeleteView):
 
 class MailingModelCreateView(CreateView):
     model = MailingModel
-    fields = ('name_mailing', 'start_time', 'end_time', 'body_massage', 'email')
+    fields = ('name_mailing', 'start_time', 'end_time', 'body_massage', 'email', 'owner',)
     success_url = reverse_lazy('send_mail:list_mailingmodel')
+
+    # def get_object(self, queryset=None):
+    #     self.object = super().get_object(queryset)
+    #
+    #     if self.object.owner != self.request.user:
+    #         raise Http404
+    #     return self.object
 
 
 class MailingModelListView(ListView):
     model = MailingModel
 
+    # def get_object(self, queryset=None):
+    #     self.object = super().get_object(queryset)
+    #
+    #     if self.object.owner != self.request.user:
+    #         raise Http404
+    #     return self.object
+
 
 class MailingModelDetailView(DetailView):
     model = MailingModel
+
+    # def get_object(self, queryset=None):
+    #     self.object = super().get_object(queryset)
+    #
+    #     if self.object.owner != self.request.user:
+    #         raise Http404
+    #     return self.object
 
 
 class MailingModelUpdateView(UpdateView):
@@ -81,10 +103,22 @@ class MailingModelUpdateView(UpdateView):
     fields = ('name_mailing', 'start_time', 'end_time', 'body_massage', 'email')
     success_url = reverse_lazy('send_mail:list_mailingmodel')
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.owner != self.request.user:
+            raise Http404
+        return self.object
+
 
 class MailingModelDeleteView(DeleteView):
     model = MailingModel
     success_url = reverse_lazy('send_mail:list_mailingmodel')
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.owner != self.request.user:
+            raise Http404
+        return self.object
 
 
 class MailingListCreateView(CreateView):
