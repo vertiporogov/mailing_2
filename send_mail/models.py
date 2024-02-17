@@ -36,15 +36,23 @@ class MailingMassage(models.Model):
 
 
 class MailingModel(models.Model):
-    email = models.ManyToManyField(Client, verbose_name='клиент рассылки')
+    class Status(models.IntegerChoices):
+        FINISHED = 1, 'Finished'
+        CREATED = 2, 'Created'
+        RUNNING = 3, 'Running'
+
+    class Period(models.IntegerChoices):
+        DAY = 1, 'Ежедневная'
+        MONTH = 2, 'Ежемесечная'
+        WEEK = 3, 'Еженедельная'
+
+    clients = models.ManyToManyField(Client, verbose_name='клиент рассылки')
     name_mailing = models.CharField(max_length=100, verbose_name='название рассылки')
     start_time = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='начало рассылки')
-    end_time = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='окончание рассылки')
-    send = models.BooleanField(default=False, verbose_name='рассылка запущена')
-    is_activ = models.BooleanField(default=False, verbose_name='рассылка активна')
-    send_end = models.BooleanField(default=False, verbose_name='рассылка завершена')
+    status = models.PositiveSmallIntegerField(choices=Status.choices, default=Status.CREATED)
     body_massage = models.ForeignKey(MailingMassage, on_delete=models.SET_NULL, **NULLABLE,
                                      verbose_name='текст рассылки')
+    period = models.PositiveSmallIntegerField(choices=Period.choices, default=Period.DAY)
 
     owner = models.ForeignKey(User, **NULLABLE, on_delete=models.SET_NULL, verbose_name='пользователь')
 
