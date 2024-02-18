@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -23,7 +24,8 @@ class HomeView(TemplateView):
     #     context_data['body'] = MailingBlog.objects.all()[:3]
     #     return context_data
 
-class ClientCreateView(CreateView):
+
+class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
     form_class = ClientForm
     success_url = reverse_lazy('send_mail:list_client')
@@ -33,7 +35,7 @@ class ClientListView(ListView):
     model = Client
 
 
-class ClientUpdateView(UpdateView):
+class ClientUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
     form_class = ClientForm
     success_url = reverse_lazy('send_mail:list_client')
@@ -43,12 +45,12 @@ class ClientDetailView(DetailView):
     model = Client
 
 
-class ClientDeleteView(DeleteView):
+class ClientDeleteView(LoginRequiredMixin, DeleteView):
     model = Client
     success_url = reverse_lazy('send_mail:list_client')
 
 
-class MailingMassageCreateView(CreateView):
+class MailingMassageCreateView(LoginRequiredMixin, CreateView):
     model = MailingMassage
     form_class = MailingMassageForm
     success_url = reverse_lazy('send_mail:list_mailingmassage')
@@ -58,7 +60,7 @@ class MailingMassageListView(ListView):
     model = MailingMassage
 
 
-class MailingMassageUpdateView(UpdateView):
+class MailingMassageUpdateView(LoginRequiredMixin, UpdateView):
     model = MailingMassage
     form_class = MailingMassageForm
     success_url = reverse_lazy('send_mail:list_mailingmassage')
@@ -68,47 +70,26 @@ class MailingMassageDetailView(DetailView):
     model = MailingMassage
 
 
-class MailingMassageDeleteView(DeleteView):
+class MailingMassageDeleteView(LoginRequiredMixin, DeleteView):
     model = MailingMassage
     success_url = reverse_lazy('send_mail:list_mailingmassage')
 
 
-class MailingModelCreateView(CreateView):
+class MailingModelCreateView(LoginRequiredMixin, CreateView):
     model = MailingModel
     form_class = MailingModelForm
     success_url = reverse_lazy('send_mail:list_mailingmodel')
 
-    # def get_object(self, queryset=None):
-    #     self.object = super().get_object(queryset)
-    #
-    #     if self.object.owner != self.request.user:
-    #         raise Http404
-    #     return self.object
 
 
 class MailingModelListView(ListView):
     model = MailingModel
 
-    # def get_object(self, queryset=None):
-    #     self.object = super().get_object(queryset)
-    #
-    #     if self.object.owner != self.request.user:
-    #         raise Http404
-    #     return self.object
-
-
 class MailingModelDetailView(DetailView):
     model = MailingModel
 
-    # def get_object(self, queryset=None):
-    #     self.object = super().get_object(queryset)
-    #
-    #     if self.object.owner != self.request.user:
-    #         raise Http404
-    #     return self.object
 
-
-class MailingModelUpdateView(UpdateView):
+class MailingModelUpdateView(LoginRequiredMixin, UpdateView):
     model = MailingModel
     form_class = MailingModelForm
     success_url = reverse_lazy('send_mail:list_mailingmodel')
@@ -131,13 +112,13 @@ class MailingModelDeleteView(DeleteView):
         return self.object
 
 
-class MailingListCreateView(CreateView):
+class MailingListCreateView(LoginRequiredMixin, CreateView):
     model = MailingList
     fields = ('name_mailing', 'client',)
     success_url = reverse_lazy('send_mail:list_mailinglist')
 
 
-class MailingListUpdateView(UpdateView):
+class MailingListUpdateView(LoginRequiredMixin, UpdateView):
     model = MailingList
     fields = ('name_mailing', 'client',)
     success_url = reverse_lazy('send_mail:list_mailinglist')
@@ -151,6 +132,6 @@ class MailingListDetailView(DetailView):
     model = MailingList
 
 
-class MailingListDeleteView(DeleteView):
+class MailingListDeleteView(LoginRequiredMixin, DeleteView):
     model = MailingList
     success_url = reverse_lazy('send_mail:list_mailinglist')
