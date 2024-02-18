@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
 
 from send_mail.apps import SendMailConfig
 
@@ -11,7 +12,7 @@ from send_mail.views import ClientCreateView, ClientListView, ClientUpdateView, 
 app_name = SendMailConfig.name
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+    path('', cache_page(60)(HomeView.as_view()), name='home'),
 
     path('create_client/', ClientCreateView.as_view(), name='create_client'),
     path('list_client/', ClientListView.as_view(), name='list_client'),

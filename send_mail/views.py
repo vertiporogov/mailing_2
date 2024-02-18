@@ -11,13 +11,16 @@ class HomeView(TemplateView):
     template_name = 'send_mail/home.html'
     extra_context = {
         'title': 'Рассылки - Главная',
-        'body': ''
+        'blog': MailingBlog.objects.all()[:3],
+        'count_all': MailingModel.objects.all().count(),
+        # 'count_active': MailingModel.objects.is_active().count(),
+        'client': Client.objects.all().count(),
     }
 
-    def get_context_data(self, **kwargs):
-        context_data = super().get_context_data(**kwargs)
-        context_data['body'] = MailingBlog.objects.all()[:3]
-        return context_data
+    # def get_context_data(self, **kwargs):
+    #     context_data = super().get_context_data(**kwargs)
+    #     context_data['body'] = MailingBlog.objects.all()[:3]
+    #     return context_data
 
 class ClientCreateView(CreateView):
     model = Client
