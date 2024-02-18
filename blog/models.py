@@ -4,6 +4,7 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 class MailingBlog(models.Model):
+    """Модель блога"""
     title = models.CharField(max_length=100, verbose_name='заголовок')
     body = models.TextField(verbose_name='содержимое блога')
     image = models.ImageField(upload_to='blog/', **NULLABLE, verbose_name='изображение')

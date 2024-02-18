@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 
 
 def send_new_password(email, new_password):
+    """Функция для отправки нового пароля"""
     send_mail(
         subject='Вы сменили пароль',
         message=f'Ваш новый пароль : {new_password}',
@@ -12,6 +13,7 @@ def send_new_password(email, new_password):
 
 
 def send_registration(email, token):
+    """Функция для верификации по письму"""
     send_mail(
         subject='Подтверждение почты',
         message=f'Для завершения регистрации перейдите по ссылке  http://127.0.0.1:8000/users/validate/{token}/',

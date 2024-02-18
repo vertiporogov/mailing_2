@@ -6,6 +6,7 @@ NULLABLE = {'null': True, 'blank': True}
 
 
 class Client(models.Model):
+    """Модель клиента"""
     email = models.EmailField(verbose_name='Почта клиента', unique=True)
     name = models.CharField(max_length=150, verbose_name='Имя клиента')
     comment = models.TextField(**NULLABLE, verbose_name='Комментарий')
@@ -21,6 +22,7 @@ class Client(models.Model):
 
 
 class MailingMassage(models.Model):
+    """Модель тела рассылки"""
     name_massage = models.CharField(max_length=50, verbose_name='название письма')
     topic_massage = models.CharField(max_length=200, **NULLABLE, verbose_name='тема письма')
     body_massage = models.TextField(verbose_name='тело письма')
@@ -36,6 +38,7 @@ class MailingMassage(models.Model):
 
 
 class MailingModel(models.Model):
+    """Модель рассылки"""
     class Status(models.IntegerChoices):
         FINISHED = 1, 'Finished'
         CREATED = 2, 'Created'
