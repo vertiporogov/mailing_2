@@ -16,11 +16,11 @@
     <link href="{% static 'css/album.css' %}" rel="stylesheet">
 </head>
 
-<body>
-
 <header>
     {% include 'send_mail/includes/inc_main_menu.html' %}
 </header>
+
+
 
 <main role="main">
 
@@ -41,6 +41,11 @@
     </div>
 
 </main>
+
+<body>
+
+{{ body|title }}
+</body>
 
 <footer></footer>
 

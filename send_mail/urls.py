@@ -10,11 +10,6 @@ from send_mail.views import ClientCreateView, ClientListView, ClientUpdateView, 
 
 app_name = SendMailConfig.name
 
-
-class MailingListViewView:
-    pass
-
-
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
 

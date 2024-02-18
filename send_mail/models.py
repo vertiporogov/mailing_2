@@ -57,7 +57,7 @@ class MailingModel(models.Model):
     owner = models.ForeignKey(User, **NULLABLE, on_delete=models.SET_NULL, verbose_name='пользователь')
 
     def __str__(self):
-        return f'{self.name_mailing} ({self.start_time} - {self.end_time})'
+        return f'{self.name_mailing} ({self.start_time} - {self.status})'
 
     class Meta:
         verbose_name = 'рассылка'

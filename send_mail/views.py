@@ -3,15 +3,21 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView, TemplateView
 
+from blog.models import MailingBlog
 from send_mail.models import Client, MailingMassage, MailingModel, MailingList
 
 
 class HomeView(TemplateView):
     template_name = 'send_mail/home.html'
     extra_context = {
-        'title': 'Рассылки - Главная'
+        'title': 'Рассылки - Главная',
+        'body': ''
     }
 
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['body'] = MailingBlog.objects.all()
+        return context_data
 
 class ClientCreateView(CreateView):
     model = Client
