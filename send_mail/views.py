@@ -16,7 +16,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        context_data['body'] = MailingBlog.objects.all()
+        context_data['body'] = MailingBlog.objects.all()[:3]
         return context_data
 
 class ClientCreateView(CreateView):
