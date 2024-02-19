@@ -43,11 +43,16 @@
 </main>
 
 <body>
-
 <h4>Количество клиентов {{ client }}</h4>
 <h4>Количество рассылок всего {{ count_all }}></h4>
-<!--<h4>Количество рассылок активных {{ count_active }}></h4>-->
-<h4>{{ blog }}</h4>
+<h4>Количество рассылок активных {{ count_active }}></h4>
+<h4>
+    {% for b in blog %}
+
+    {{ b.body }}
+    {% endfor %}
+
+</h4>
 </body>
 
 <footer></footer>

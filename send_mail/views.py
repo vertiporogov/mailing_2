@@ -7,18 +7,21 @@ from django.views.generic import CreateView, ListView, UpdateView, DetailView, D
 from blog.models import MailingBlog
 from send_mail.forms import ClientForm, MailingModelForm, MailingMassageForm
 from send_mail.models import Client, MailingMassage, MailingModel, MailingList
+from users.models import User
 
 
 class HomeView(TemplateView):
     template_name = 'send_mail/home.html'
-    extra_context = {
-        'title': 'Рассылки - Главная',
-        'blog': MailingBlog.objects.all()[:3],
-        'count_all': MailingModel.objects.all().count(),
-        # 'count_active': MailingModel.objects.is_active().count(),
-        'client': Client.objects.all().count(),
-    }
 
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['title'] = 'Рассылки - Главная'
+        context['blog'] = MailingBlog.objects.order_by('?')[:3]
+        context['count_all'] = MailingModel.objects.all().count()
+        context['count_active'] = MailingModel.objects.filter(is_active=True).count()
+        context['client'] = Client.objects.all().count()
+        # context['email'] = User.objects.filter('')
+        return context
     # def get_context_data(self, **kwargs):
     #     context_data = super().get_context_data(**kwargs)
     #     context_data['body'] = MailingBlog.objects.all()[:3]

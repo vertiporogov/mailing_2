@@ -56,6 +56,7 @@ class MailingModel(models.Model):
     body_massage = models.ForeignKey(MailingMassage, on_delete=models.SET_NULL, **NULLABLE,
                                      verbose_name='текст рассылки')
     period = models.PositiveSmallIntegerField(choices=Period.choices, default=Period.DAY)
+    is_active = models.BooleanField(default=True, verbose_name='активность')
 
     owner = models.ForeignKey(User, **NULLABLE, on_delete=models.SET_NULL, verbose_name='пользователь')
 
